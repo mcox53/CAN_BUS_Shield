@@ -683,14 +683,14 @@ byte MCP_CAN::mcp2515_init(const byte canSpeed, const byte clock)
     if (res > 0)
     {
 #if DEBUG_EN
-      Serial.print("Enter setting mode fail\r\n");
+      SerialUSB.print("Enter setting mode fail\r\n");
 #else
       delay(10);
 #endif
       return res;
     }
 #if DEBUG_EN
-    Serial.print("Enter setting mode success \r\n");
+    SerialUSB.print("Enter setting mode success \r\n");
 #else
     delay(10);
 #endif
@@ -699,14 +699,14 @@ byte MCP_CAN::mcp2515_init(const byte canSpeed, const byte clock)
     if (mcp2515_configRate(canSpeed, clock))
     {
 #if DEBUG_EN
-      Serial.print("set rate fall!!\r\n");
+      SerialUSB.print("set rate fall!!\r\n");
 #else
       delay(10);
 #endif
       return res;
     }
 #if DEBUG_EN
-    Serial.print("set rate success!!\r\n");
+    SerialUSB.print("set rate success!!\r\n");
 #else
     delay(10);
 #endif
@@ -739,7 +739,7 @@ byte MCP_CAN::mcp2515_init(const byte canSpeed, const byte clock)
       if (res)
       {
 #if DEBUG_EN
-        Serial.print("Enter Normal Mode Fail!!\r\n");
+        SerialUSB.print("Enter Normal Mode Fail!!\r\n");
 #else
         delay(10);
 #endif
@@ -748,7 +748,7 @@ byte MCP_CAN::mcp2515_init(const byte canSpeed, const byte clock)
 
 
 #if DEBUG_EN
-      Serial.print("Enter Normal Mode Success!!\r\n");
+      SerialUSB.print("Enter Normal Mode Success!!\r\n");
 #else
       delay(10);
 #endif
@@ -1010,14 +1010,14 @@ byte MCP_CAN::init_Mask(byte num, byte ext, unsigned long ulData)
 {
     byte res = MCP2515_OK;
 #if DEBUG_EN
-    Serial.print("Begin to set Mask!!\r\n");
+    SerialUSB.print("Begin to set Mask!!\r\n");
 #else
     delay(10);
 #endif
     res = mcp2515_setCANCTRL_Mode(MODE_CONFIG);
     if (res > 0) {
 #if DEBUG_EN
-        Serial.print("Enter setting mode fall\r\n");
+        SerialUSB.print("Enter setting mode fall\r\n");
 #else
         delay(10);
 #endif
@@ -1036,14 +1036,14 @@ byte MCP_CAN::init_Mask(byte num, byte ext, unsigned long ulData)
     res = mcp2515_setCANCTRL_Mode(mcpMode);
     if (res > 0) {
 #if DEBUG_EN
-        Serial.print("Enter normal mode fall\r\n");
+        SerialUSB.print("Enter normal mode fall\r\n");
 #else
         delay(10);
 #endif
         return res;
     }
 #if DEBUG_EN
-    Serial.print("set Mask success!!\r\n");
+    SerialUSB.print("set Mask success!!\r\n");
 #else
     delay(10);
 #endif
@@ -1058,7 +1058,7 @@ byte MCP_CAN::init_Filt(byte num, byte ext, unsigned long ulData)
 {
     byte res = MCP2515_OK;
 #if DEBUG_EN
-    Serial.print("Begin to set Filter!!\r\n");
+    SerialUSB.print("Begin to set Filter!!\r\n");
 #else
     delay(10);
 #endif
@@ -1066,7 +1066,7 @@ byte MCP_CAN::init_Filt(byte num, byte ext, unsigned long ulData)
     if (res > 0)
     {
 #if DEBUG_EN
-        Serial.print("Enter setting mode fall\r\n");
+        SerialUSB.print("Enter setting mode fall\r\n");
 #else
         delay(10);
 #endif
@@ -1107,14 +1107,14 @@ byte MCP_CAN::init_Filt(byte num, byte ext, unsigned long ulData)
     if (res > 0)
     {
 #if DEBUG_EN
-        Serial.print("Enter normal mode fall\r\nSet filter fail!!\r\n");
+        SerialUSB.print("Enter normal mode fall\r\nSet filter fail!!\r\n");
 #else
         delay(10);
 #endif
         return res;
     }
 #if DEBUG_EN
-    Serial.print("set Filter success!!\r\n");
+    SerialUSB.print("set Filter success!!\r\n");
 #else
     delay(10);
 #endif
@@ -1417,7 +1417,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
                 break;
                 default:
 #if DEBUG_EN
-                    Serial.print("Invalid pin mode request\r\n");
+                    SerialUSB.print("Invalid pin mode request\r\n");
 #endif
                     return false;
             }
@@ -1436,7 +1436,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
                 break;
                 default:
 #if DEBUG_EN
-                    Serial.print("Invalid pin mode request\r\n");
+                    SerialUSB.print("Invalid pin mode request\r\n");
 #endif
                     return false;
             }
@@ -1447,7 +1447,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
             if(res > 0)
             {
 #if DEBUG_EN
-                Serial.print("Entering Configuration Mode Failure...\r\n");
+                SerialUSB.print("Entering Configuration Mode Failure...\r\n");
 #else
                 delay(10);
 #endif
@@ -1462,7 +1462,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
                 break;
                 default:
 #if DEBUG_EN
-                    Serial.print("Invalid pin mode request\r\n");
+                    SerialUSB.print("Invalid pin mode request\r\n");
 #endif
                     ret=false;
             }
@@ -1470,7 +1470,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
             if(res)
             {
 #if DEBUG_EN
-                Serial.print("`Setting ID Mode Failure...\r\n");
+                SerialUSB.print("`Setting ID Mode Failure...\r\n");
 #else
                 delay(10);
 #endif
@@ -1483,7 +1483,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
             if(res > 0)
             {
 #if DEBUG_EN
-                Serial.print("Entering Configuration Mode Failure...\r\n");
+                SerialUSB.print("Entering Configuration Mode Failure...\r\n");
 #else
                 delay(10);
 #endif
@@ -1498,7 +1498,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
                 break;
                 default:
 #if DEBUG_EN
-                    Serial.print("Invalid pin mode request\r\n");
+                    SerialUSB.print("Invalid pin mode request\r\n");
 #endif
                     ret=false;
             }
@@ -1506,7 +1506,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
             if(res)
             {
 #if DEBUG_EN
-                Serial.print("`Setting ID Mode Failure...\r\n");
+                SerialUSB.print("`Setting ID Mode Failure...\r\n");
 #else
                 delay(10);
 #endif
@@ -1519,7 +1519,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
             if(res > 0)
             {
 #if DEBUG_EN
-                Serial.print("Entering Configuration Mode Failure...\r\n");
+                SerialUSB.print("Entering Configuration Mode Failure...\r\n");
 #else
                 delay(10);
 #endif
@@ -1534,7 +1534,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
                 break;
                 default:
 #if DEBUG_EN
-                    Serial.print("Invalid pin mode request\r\n");
+                    SerialUSB.print("Invalid pin mode request\r\n");
 #endif
                     ret=false;
             }
@@ -1542,7 +1542,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
 			if(res)
             {
 #if DEBUG_EN
-                Serial.print("`Setting ID Mode Failure...\r\n");
+                SerialUSB.print("`Setting ID Mode Failure...\r\n");
 #else
                 delay(10);
 #endif
@@ -1552,7 +1552,7 @@ bool MCP_CAN::mcpPinMode(const byte pin, const byte mode)
         break;
         default:
 #if DEBUG_EN
-            Serial.print("Invalid pin for mode request\r\n");
+            SerialUSB.print("Invalid pin for mode request\r\n");
 #endif
             return false;
     }
@@ -1589,7 +1589,7 @@ bool MCP_CAN::mcpDigitalWrite(const byte pin, const byte mode) {
         break;
         default:
 #if DEBUG_EN
-            Serial.print("Invalid pin for mcpDigitalWrite\r\n");
+            SerialUSB.print("Invalid pin for mcpDigitalWrite\r\n");
 #endif
             return false;
     }
@@ -1654,7 +1654,7 @@ byte MCP_CAN::mcpDigitalRead(const byte pin) {
         break;
         default:
 #if DEBUG_EN
-            Serial.print("Invalid pin for mcpDigitalRead\r\n");
+            SerialUSB.print("Invalid pin for mcpDigitalRead\r\n");
 #endif
             return LOW;
     }
